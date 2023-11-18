@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.3.2",
+    "chart.js": "^4.4.0",
+    "ng2-charts": "^5.0.3"
+  }
+}
