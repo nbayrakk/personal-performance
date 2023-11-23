@@ -1,0 +1,32 @@
+<div>
+  <h2 style="text-align: center;" class="pb-5">Değerlendirm Yapılacak Dönemi Seçiniz</h2>
+</div>
+<div class="spinner-border loading" *ngIf="loading" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div style="width: 800px; justify-content: center;display: flex;" class="d-flex">
+  <div class="col" style="display: flex;justify-content: center;">
+    <div ngbDropdown class="d-inline-block">
+      <button type="button" class="btn btn-outline-primary background" style="color: white;width: 250px;"
+        id="dropdownBasic1" ngbDropdownToggle>
+        <label for="" *ngIf="!selectedWeek">
+
+          Tarih Seçiniz
+        </label>
+        <label for="" *ngIf="selectedWeek">
+          {{selectedWeek.tarih}}
+        </label>
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button ngbDropdownItem *ngFor="let week of weeks" (click)="selectWeek(week)">{{week.tarih}}</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div style="justify-content: end;display: flex;margin-top: 35px;">
+    <button type="button" (click)="next()" class="btn btn-primary background">Devam</button>
+  </div>
+
+</div>

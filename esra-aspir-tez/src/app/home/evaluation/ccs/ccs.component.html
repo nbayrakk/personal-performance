@@ -1,0 +1,38 @@
+<div>
+  <h2 class="pb-5">Çözülen Çağrı Sayısına Göre Değerlendirme</h2>
+</div>
+<div style="width: 800px; justify-content: center;display: flex;" class="d-flex">
+  <div class="col-md-12 row">
+    <div class="col-md-6">
+      <div class="row" style="padding: 10px;">
+        <div class="col-md-6" >
+          Kullanıcı Adı-Soyadı
+        </div>
+        <div class="col-md-6">
+          Değerlendirme Sonucu
+        </div>
+      </div>
+      <div class="row" *ngFor="let data of ccs" style="padding: 10px;">
+        <div class="col-md-6">
+          {{data.calisan.personelAdi}} {{data.calisan.personelSoyadi}}
+        </div>
+        <div class="col-md-6">
+          {{data.ccsPuani}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="chart-container" style="width: 600px;height: 500px;">
+        <canvas id="MyChart" [width]="600" [height]="250" >{{ chart }}</canvas>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<div class="row">
+  <div (click)="next()" style="justify-content: end;display: flex;margin-top: 35px;">
+    <button type="button" class="btn btn-primary background">Devam</button>
+  </div>
+
+</div>

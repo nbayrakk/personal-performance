@@ -1,2 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+.background {
+  background-color: #DC6C21 !important;
+  border-color: #DC6C21 !important;
+  color: white
+}
+
+
+
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';

@@ -1,0 +1,41 @@
+<div>
+  <h4 class="pb-5">YÖNETİCİ PUANI İLE SIRALAMA SONUÇLARI</h4>
+</div>
+<div style="width: 800px; justify-content: center;display: flex;" class="d-flex">
+  <div class="col-md-12 row">
+    <div class="col-md-6">
+      <div class="row " style="padding: 10px;">
+        <div class="col-md-6">Ad Soyad</div>
+        <div class="col-md-6">
+          Değerlendirme Sonucu
+        </div>
+      </div>
+      <div class="row" style="display: flex;padding: 10px; " *ngFor="let data of ypd">
+        <div class="col-md-6" style="align-self: center;">
+          {{data.calisan.personelAdi}} {{data.calisan.personelSoyadi}}
+        </div>
+        <div class="col-md-6">
+          {{data.ypdPuani}}
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="chart-container" style="width: 600px;height: 600px;">
+        <canvas width="600" id="MyChart">{{ chart }}</canvas>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+  <div style="justify-content: end;
+  display: flex;
+  margin-top: 35px;">
+    <button type="button" (click)="next()" class="btn btn-primary background">Devam</button>
+
+  </div>
+
+</div>

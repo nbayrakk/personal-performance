@@ -1,0 +1,76 @@
+<div>
+  <h2 style="text-align: center;" class="pb-5">Değerlendirm Yapılacak Dönemi Seçiniz</h2>
+</div>
+<div style="justify-content: center;display: flex;" class="d-flex">
+
+  <div class="row col-md-12">
+    <div class="col-md-6">
+      <div ngbDropdown class="d-inline-block">
+        <button type="button" class="btn btn-outline-primary background" style="color: white;width: 250px;"
+          id="dropdownBasic1" ngbDropdownToggle>
+          <label for="" *ngIf="!selectedStartWeek">
+
+            Tarih Seçiniz
+          </label>
+          <label for="" *ngIf="selectedStartWeek">
+            {{selectedStartWeek.tarih}}
+          </label>
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem *ngFor="let week of weeks"
+            (click)="selectOptionStartWeek(week)">{{week.tarih}}</button>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div ngbDropdown class="d-inline-block">
+        <button type="button" class="btn btn-outline-primary background" style="color: white;width: 250px;"
+          id="dropdownBasic1" ngbDropdownToggle>
+          <label for="" *ngIf="!selectedEndWeek">
+
+            Tarih Seçiniz
+          </label>
+          <label for="" *ngIf="selectedEndWeek">
+            {{selectedEndWeek.tarih}}
+          </label>
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem *ngFor="let week of weeks" (click)="selectOptionEndWeek(week)">{{week.tarih}}</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="col-md-12 pt-5" style="display:flex;justify-content: center; ">
+  <div class="row">
+    <div ngbDropdown class="d-inline-block">
+      <button type="button" class="btn btn-outline-primary background" style="color: white;width: 250px;"
+        id="dropdownBasic1" ngbDropdownToggle>
+        <label for="" *ngIf="selectedTeam">
+          Analiz Edilecek Ekibi Seçiniz
+        </label>
+        <label for="" *ngIf="selectedTeam">
+          {{selectedTeam.ekipId == 'all' ? 'Hepsi' : selectedTeam.ekipAdi}}
+        </label>
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button ngbDropdownItem (click)="selectTeam('all')">Hepsi</button>
+        <button ngbDropdownItem (click)="selectTeam(item.ekipId)" *ngFor="let item of teams"> {{item.ekipAdi}} </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div style="justify-content: end;
+  display: flex;
+  margin-top: 35px;">
+    <button (click)="next()"  type="button" class="btn btn-primary background">Devam</button>
+
+  </div>
+
+</div>
+

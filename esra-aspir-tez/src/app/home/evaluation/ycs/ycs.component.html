@@ -1,0 +1,41 @@
+<div>
+  <h4 class="pb-5">YENİDEN AÇILAN ÇAĞRI SAYISINA GÖRE SIRALAMA</h4>
+</div>
+<div class="spinner-border loading" *ngIf="loading" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<p>
+  <ngb-alert type="danger" *ngIf="show">
+    Yeniden Açılan Çağrı Etkisi, Yönetici Puanı Etkisi ve Çağrı Sayısı Etkisi değerlerinin toplamı 100'den fazla
+    olmamalıdır.
+  </ngb-alert>
+</p>
+<div style="width: 800px; justify-content: center;display: flex;" class="d-flex">
+  <div class="col" style="display: flex;justify-content: center;">
+    <div class="col-md-12 row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="">Yeniden Açılan Çağrı Etkisi</label>
+          <input [(ngModel)]="yac" type="number" class="form-control" id="exampleInputEmail1"
+            aria-describedby="emailHelp" placeholder="">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label for="">Yönetici Puanı Etkisi</label>
+        <input [(ngModel)]="yp" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+          placeholder="">
+      </div>
+      <div class="col-md-4">
+        <label for="">Çağrı Sayısı Etkisi</label>
+        <input [(ngModel)]="yc" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+          placeholder="">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div (click)="next()" style="justify-content: end;display: flex;margin-top: 35px;">
+    <button type="button" class="btn btn-primary background">Hesapla</button>
+  </div>
+
+</div>

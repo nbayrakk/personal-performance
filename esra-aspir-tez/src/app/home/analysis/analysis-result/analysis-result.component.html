@@ -1,0 +1,52 @@
+<div class="col-md-12 row">
+  <div class="col-md-6">
+    <div class="chart-container" style="width: 600px;">
+      <canvas width="600" id="MyChart">{{ chart }}</canvas>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="chart-container" style="width: 600px;">
+      <canvas width="600" id="MyChart2">{{ chart2 }}</canvas>
+    </div>
+  </div>
+</div>
+<div class="col-md-12 row">
+  <div class="col-md-6" *ngFor="let week of weeks;let i = index">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">
+            {{week.tarih}}
+          </th>
+        </tr>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Ad Soyad</th>
+          <th scope="col">ÇÇS</th>
+          <th scope="col">YÇC</th>
+          <th scope="col">YPD</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let perf of performans[week.hafta_sira]">
+          <div *ngIf="i == 0; else another">
+            <th (click)="detail(perf.personelId)" scope="row"  style="cursor: pointer;">Detay</th>
+          </div>
+          <ng-template #another>
+            <th  scope="row"  > </th>
+
+          </ng-template>
+          <td>
+            {{perf.calisan.personelAdi}} {{perf.calisan.personelSoyadi}}
+
+          </td>
+          <td> {{perf.ccsPuani}} </td>
+          <td> {{perf.ycsPuani}} </td>
+          <td> {{perf.ypdPuani}} </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

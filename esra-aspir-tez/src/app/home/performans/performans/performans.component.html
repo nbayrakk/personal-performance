@@ -1,0 +1,51 @@
+<div class="col" style="display: flex;justify-content: center;">
+  <div ngbDropdown class="d-inline-block">
+    <button type="button" class="btn btn-outline-primary background" style="color: white;width: 250px;"
+      id="dropdownBasic1" ngbDropdownToggle>
+      <label for="" *ngIf="!selectedWeek">
+
+        Tarih Seçiniz
+      </label>
+      <label for="" *ngIf="selectedWeek">
+        {{selectedWeek?.tarih}}
+      </label>
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <button ngbDropdownItem *ngFor="let week of weeks" (click)="selectWeek(week)">{{week.tarih}}</button>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="col-md-12 row">
+  <div class="col-md-9">
+    <div class="chart-custom">
+      <div class="chart-container" style="width: 600px;height: 600px;">
+        <canvas width="600" id="MyChart">{{ chart }}</canvas>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-3">
+    <table class="table" *ngIf="data.length">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Ad Soyad</th>
+          <th scope="col">ÇÇS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let personal of data">
+          <th (click)="detail(personal.personelId)" scope="row" style="cursor: pointer;">Detay</th>
+          <td>
+            {{personal.calisan.personelAdi}} {{personal.calisan.personelSoyadi}}
+
+          </td>
+          <td> {{personal.ccsPuani}} </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

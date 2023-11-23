@@ -1,0 +1,7 @@
+/* styles.css veya styles.scss */
+
+.router-outlet-container {
+  display: grid;
+  place-items: center;
+  height: 100vh; /* Ekran yüksekliğine göre ayarlayabilirsiniz */
+}

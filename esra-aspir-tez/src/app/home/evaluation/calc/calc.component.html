@@ -1,0 +1,38 @@
+<div>
+  <h2 style="text-align: center;" class="pb-5">Yönetici Puanına Göre Değerlendirme</h2>
+  <h4 class="pb-5">PERSONEL PUAN GİRİŞİNİ YAPINIZ</h4>
+</div>
+<div class="spinner-border loading" *ngIf="loading" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div style="width: 800px; justify-content: center;display: flex;padding-left: 10px;" class="d-flex">
+  <div class="col-md-12">
+    <div class="row pb-5">
+      <div class="col-md-3">Ad Soyad</div>
+      <div class="col-md-6">
+        Yönetici Puanı
+      </div>
+    </div>
+    <div class="row" style="display: flex;padding: 10px;" *ngFor="let data of ccs;let i = index">
+      <div class="col-md-3" style="align-self: center;">
+        {{data.calisan.personelAdi}} {{data.calisan.personelSoyadi}}
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <input [(ngModel)]="inputValues[i]" type="number" class="form-control"
+            placeholder="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div style="justify-content: end;
+  display: flex;
+  margin-top: 35px;">
+    <button (click)="next()" type="button" class="btn btn-primary background">Hesapla</button>
+
+  </div>
+
+</div>
