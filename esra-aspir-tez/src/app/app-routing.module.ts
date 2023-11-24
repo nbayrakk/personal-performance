@@ -1,3 +1,4 @@
+import { PerformansDetailComponent } from './home/performans/performans-detail/performans-detail.component';
 import { AnalysisDetailComponent } from './home/analysis/analysis-detail/analysis-detail.component';
 import { AnalysisSelectComponent } from './home/analysis/analysis-select/analysis-select.component';
 import { YcsResultComponent } from './home/evaluation/ycs-result/ycs-result.component';
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'analiysis-result', component: AnalysisResultComponent },
   { path: 'analiysis-detail/:id', component: AnalysisDetailComponent },
   { path: 'performans', component: PerformansComponent },
+  { path: 'performans-detail/:id', component: PerformansDetailComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: HomeComponent },
 ];

@@ -48,4 +48,7 @@ export class YcsComponent implements OnInit {
       this.router.navigate(['/ycs-result']);
     });
   }
+  goBack() {
+    window.history.back();
+  }
 }

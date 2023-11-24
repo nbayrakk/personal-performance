@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { DataService } from './../../../service/data.service';
 import { Chart } from 'chart.js/auto';
 import { HttpService } from './../../../service/http.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,13 +13,15 @@ export class PerformansComponent implements OnInit {
   selectedWeek: any;
   loading = false;
   weeks: any = [];
-  data:any = [];
+  data: any = [];
   chart: any;
   public chartType: string = "doughnut";
   public chartLabel: string[] = [];
   public chartData: number[] = [];
 
-  constructor(private api: HttpService) {
+  constructor(private api: HttpService,
+    private router: Router,
+    private dataService: DataService) {
 
   }
   ngOnInit(): void {
@@ -25,6 +29,8 @@ export class PerformansComponent implements OnInit {
   }
   selectWeek(option: any) {
     this.selectedWeek = option;
+    this.dataService.setData('performanceWeek', this.selectedWeek);
+
     this.getPerformans();
   }
   getWeeks() {
@@ -73,8 +79,14 @@ export class PerformansComponent implements OnInit {
 
     });
   }
-  detail(id:any){
+  detail(id: any) {
+    this.router.navigate(['/performans-detail', id]);
+  }
+  goBack() {
+    window.history.back();
+  }
+  home(){
+    this.router.navigate(['/home']);
 
   }
-
 }

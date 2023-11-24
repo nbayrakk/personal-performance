@@ -67,8 +67,10 @@ export class YcsResultComponent implements OnInit{
     });
   }
   next(){
-    this.router.navigate(['/analiysis-select']);
+    this.router.navigate(['/home']);
 
   }
-
+  goBack() {
+    window.history.back();
+  }
 }

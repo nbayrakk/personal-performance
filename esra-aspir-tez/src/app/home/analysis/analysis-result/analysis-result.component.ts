@@ -16,13 +16,17 @@ export class AnalysisResultComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
-    private router:Router
+    private router: Router
   ) {
 
   }
   ngOnInit(): void {
     let sw = this.dataService.getData().selectedStartWeek;
     let ew = this.dataService.getData().selectedEndWeek;
+    if(!sw || !ew){
+        this.router.navigate(['/analiysis-select']);
+        return;
+    }
     this.weeks.push(sw);
     this.weeks.push(ew);
     this.performans = this.dataService.getData().performans;
@@ -124,8 +128,11 @@ export class AnalysisResultComponent implements OnInit {
 
     });
   }
-  detail(id:any){
+  detail(id: any) {
     this.router.navigate(['/analiysis-detail', id]);
 
+  }
+  goBack() {
+    window.history.back();
   }
 }

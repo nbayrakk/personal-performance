@@ -22,6 +22,10 @@ export class CalcResultComponent {
   ngOnInit(): void {
     this.ccs = this.dataService.getData().ccs;
     this.ypd = this.dataService.getData().ypd;
+    if (!this.ccs || !this.ypd) {
+      this.router.navigate(['/period']);
+      return;
+    }
     let label = this.ccs.map((data: any) => {
       return data.calisan.personelAdi + data.calisan.personelSoyadi;
     });
@@ -60,5 +64,8 @@ export class CalcResultComponent {
   next(){
     this.router.navigate(['/ycs']);
 
+  }
+  goBack() {
+    window.history.back();
   }
 }

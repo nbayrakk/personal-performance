@@ -21,6 +21,10 @@ export class CalcComponent implements OnInit {
   }
   ngOnInit(): void {
     this.ccs = this.dataService.getData().ccs;
+    if (!this.ccs) {
+      this.router.navigate(['/period']);
+      return;
+    }
   }
   change($event: any, i: any) {
     console.log($event, i);
@@ -46,5 +50,8 @@ export class CalcComponent implements OnInit {
       this.router.navigate(['/calc-result']);
       this.loading = false;
     });
+  }
+  goBack() {
+    window.history.back();
   }
 }

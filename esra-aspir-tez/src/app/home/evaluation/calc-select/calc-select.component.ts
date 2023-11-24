@@ -13,7 +13,9 @@ export class CalcSelectComponent {
     private dataService: DataService) {
 
   }
-
+  goBack() {
+    window.history.back();
+  }
   next() {
     this.dataService.setData('agirlik',this.selectedValue)
     this.router.navigate(['/calc']);

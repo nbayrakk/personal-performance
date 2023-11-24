@@ -14,6 +14,7 @@ export class AnalysisSelectComponent implements OnInit {
   selectedEndWeek: any;
   weeks: any;
   teams: any;
+  loading = false;
   constructor(
     private api: HttpService,
     private router: Router,
@@ -27,20 +28,21 @@ export class AnalysisSelectComponent implements OnInit {
   }
 
   getWeeks() {
+    this.loading = true;
     this.api.get('haftalar/allHaftalar').subscribe(res => {
-      console.log(res);
+      this.loading = false;
       this.weeks = res;
     });
   }
   getTeam() {
+    this.loading = true;
     this.api.get('department/allDepartments').subscribe(res => {
-      console.log(res);
+      this.loading = false;
       this.teams = res;
     });
 
   }
   selectTeam(option: any) {
-
     this.selectedTeam = option;
 
   }
@@ -58,8 +60,9 @@ export class AnalysisSelectComponent implements OnInit {
   }
 
   next() {
+    this.loading = true;
     this.api.get('performans/getCcsYcsYpdEkipPersonal?hafta1=' + this.selectedStartWeek.hafta_sira + '&hafta2=' + this.selectedEndWeek.hafta_sira + '&ekip=' + this.selectedTeam).subscribe(res => {
-      console.log(res);
+      this.loading = false;
       let performans: any = {};
       Object.keys(res).forEach((r: any) => {
         res[r].forEach((el: any) => {
@@ -69,11 +72,15 @@ export class AnalysisSelectComponent implements OnInit {
           performans[el.haftaSira].push(el);
         });
       });
-
-      console.log(performans);
       this.dataService.setData('performans', performans);
       this.router.navigate(['/analiysis-result']);
     });
+
+  }
+
+  home() {
+
+    this.router.navigate(['/home']);
 
   }
 }

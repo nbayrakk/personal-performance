@@ -47,4 +47,7 @@ export class PeriodComponent implements OnInit {
     });
 
   }
+  goBack() {
+    window.history.back();
+  }
 }

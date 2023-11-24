@@ -1,3 +1,7 @@
+
+<div class="spinner-border loading" *ngIf="loading" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
 <div class="col" style="display: flex;justify-content: center;">
   <div ngbDropdown class="d-inline-block">
     <button type="button" class="btn btn-outline-primary background" style="color: white;width: 250px;"
@@ -18,7 +22,7 @@
 </div>
 
 
-<div class="col-md-12 row">
+<div class="col-md-12 row" style="margin-top: 50px;">
   <div class="col-md-9">
     <div class="chart-custom">
       <div class="chart-container" style="width: 600px;height: 600px;">
@@ -48,4 +52,15 @@
       </tbody>
     </table>
   </div>
+</div>
+<div class="row" style="display: flex;justify-content: space-between;margin-top: 40px;">
+
+  <button class="btn btn-primary background" style="width: 75px;" (click)="goBack()">Geri</button>
+
+
+    <button class="btn btn-primary background" style="width: 100px;" (click)="home()">Ana Sayfa</button>
+
+
+
+
 </div>

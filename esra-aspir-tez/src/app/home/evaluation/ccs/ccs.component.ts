@@ -13,13 +13,17 @@ export class CcsComponent implements OnInit {
   public chart: any;
 
   constructor(private dataService: DataService,
-    private router:Router) {
+    private router: Router) {
 
   }
 
   ngOnInit(): void {
-    console.log(this.dataService.getData());
     this.ccs = this.dataService.getData().ccs;
+    console.log(this.ccs);
+    if (!this.ccs) {
+      this.router.navigate(['/period']);
+      return;
+    }
     let label = this.ccs.map((data: any) => {
       return data.calisan.personelAdi + data.calisan.personelSoyadi;
     });
@@ -28,9 +32,9 @@ export class CcsComponent implements OnInit {
     });
 
     this.chart = new Chart("MyChart", {
-      type: 'bar', //this denotes tha type of chart
+      type: 'bar',
 
-      data: {// values on X-Axis
+      data: {
         labels: label,
         datasets: [
           {
@@ -46,8 +50,11 @@ export class CcsComponent implements OnInit {
 
     });
   }
-  next(){
+  next() {
 
     this.router.navigate(['/calc-select']);
+  }
+  goBack() {
+    window.history.back();
   }
 }

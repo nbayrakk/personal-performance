@@ -1,1 +1,53 @@
-<p>performans-detail works!</p>
+<div class="spinner-border loading" *ngIf="loading" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div class="col-md-12 " style="display: flex;justify-content: center;">
+  <div class="col-md-12">
+    <table class="table" *ngIf="detail?.length">
+      <thead>
+        <tr>
+          <th scope="col">Çözen Kişi</th>
+          <th scope="col">
+            Toplam Karşılanan Çağrı Adedi
+          </th>
+          <th>
+            Yeniden Açılan Çağrı Sayısı
+          </th>
+          <th>
+            Kişi Başı Günlük Çözülen Çağrı Sayısı[Çözüm / (Kişi Sayısı*Gün)]
+          </th>
+          <th>
+            Kişi Başı Günlük Karşılanan Çağrı Sayısı[Çözüm+Eskale / (Kişi Sayısı*Gün)]
+          </th>
+        </tr>
+
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            {{detail[0].calisan.personelAdi}} {{detail[0].calisan.personelSoyadi}}
+          </td>
+          <td>
+            {{detail[0].bakilanCagri}}
+          </td>
+          <td>
+            {{detail[0].yenidenAcilanCagriPuani}}
+          </td>
+          <td>
+            ?
+          </td>
+          <td>
+            ?
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row" style="display: flex;justify-content: space-between;margin-top: 40px;">
+
+  <button class="btn btn-primary background" style="width: 75px;" (click)="goBack()">Geri</button>
+
+
+</div>
+
