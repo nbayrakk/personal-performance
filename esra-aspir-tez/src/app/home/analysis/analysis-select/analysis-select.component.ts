@@ -61,7 +61,7 @@ export class AnalysisSelectComponent implements OnInit {
 
   next() {
     this.loading = true;
-    this.api.get('performans/getCcsYcsYpdEkipPersonal?hafta1=' + this.selectedStartWeek.hafta_sira + '&hafta2=' + this.selectedEndWeek.hafta_sira + '&ekip=' + this.selectedTeam).subscribe(res => {
+    this.api.get('performans/getCcsYcsYpdEkipPersonal?hafta1=' + this.selectedStartWeek.hafta_sira + '&hafta2=' + this.selectedEndWeek.hafta_sira + '&ekip=' + (this.selectedTeam.ekip_id ? this.selectedTeam.ekip_id :'all')).subscribe(res => {
       this.loading = false;
       let performans: any = {};
       Object.keys(res).forEach((r: any) => {
