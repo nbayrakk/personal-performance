@@ -1,7 +1,7 @@
 import { DataService } from './../../../service/data.service';
 import { HttpService } from './../../../service/http.service';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-performans-detail',
@@ -13,24 +13,47 @@ export class PerformansDetailComponent {
   loading = false;
   chart: any;
   detail: any;
+  text: string = '';
   constructor(private route: ActivatedRoute,
     private api: HttpService,
-    private dataService: DataService
+    private dataService: DataService,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.id = +params['id'];
       this.getDetail();
+      this.getText();
     });
   }
   getDetail() {
     this.loading = true;
     let week = this.dataService.getData().performanceWeek;
+    if (!week) {
+      this.router.navigate(['/performans']);
+      return;
+
+    }
     this.api.get('performans/getPersonalByHaftalar?hafta1=' + week.hafta_sira + '&hafta2=' + 0 + '&personelId=' + this.id).subscribe(res => {
       console.log(res);
-      this.loading = true;
+      this.loading = false;
       this.detail = res;
+    });
+  }
+  getText() {
+    let week = this.dataService.getData().performanceWeek;
+    if (!week) {
+      this.router.navigate(['/performans']);
+      return;
+
+    }
+    this.api.get('performans/getPersonalCagriSayiSureTahmin?personelId=' + this.id).subscribe(res => {
+      this.text += this.detail[0].calisan.personelAdi.charAt(0).toUpperCase() + this.detail[0].calisan.personelAdi.slice(1).toLowerCase() + " " + this.detail[0].calisan.personelSoyadi.charAt(0).toUpperCase() + this.detail[0].calisan.personelSoyadi.slice(1).toLowerCase();
+      this.text += " sonraki haftalarda ki tahmini çözülen çağrı sayısı: ";
+      this.text += res[0]['Tahmini Çözülen Çağrı Sayısı'];
+      this.text += " tahmini çözülen çağrı süresi: ";
+      this.text += res[1]['Tahmini Çözülen Çağrı Süre'];
     });
   }
   goBack() {
