@@ -13,14 +13,14 @@
         {{selectedWeek?.tarih}}
       </label>
     </button>
-    <div ngbDropdownMenu aria-labelledby="dropdownBasic1" *ngIf="weeks.length">
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1" >
       <button ngbDropdownItem *ngFor="let week of weeks" (click)="selectWeek(week)">{{week.tarih}}</button>
     </div>
   </div>
 </div>
 
 
-<div class="col-md-12 row" style="margin-top: 50px;" *ngIf="data.length">
+<div class="col-md-12 row" style="margin-top: 50px;" >
   <div class="col-md-9">
     <div class="chart-custom">
       <div class="chart-container" style="width: 600px;height: 600px;">
