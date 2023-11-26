@@ -16,8 +16,8 @@ export class YcsComponent implements OnInit {
   yc: number = 0;
   yp: number = 0;
   show = false;
-
-  loading=false
+  disabled = true;
+  loading = false;
   constructor(
     private api: HttpService,
     private dataService: DataService,
@@ -28,12 +28,18 @@ export class YcsComponent implements OnInit {
   ngOnInit(): void {
 
   }
+  isDisabled() {
+    if (this.yac && this.yc && this.yp) {
+      return false;
+    }
+    return true
+  }
   next() {
     if (this.yac + this.yc + this.yp > 100 || this.yac + this.yc + this.yp < 100) {
       this.show = true;
       return;
     }
-    this.loading=true
+    this.loading = true;
 
     let weekId = this.dataService.getData().week;
 
@@ -43,9 +49,11 @@ export class YcsComponent implements OnInit {
       yoneticiPuan: this.yp,
       cagriSayisiPuan: this.yc
     }).subscribe(res => {
-      this.loading=false
+      this.loading = false;
       this.dataService.setData('ycs', res);
       this.router.navigate(['/ycs-result']);
+    }, err => {
+      this.loading = false;
     });
   }
   goBack() {

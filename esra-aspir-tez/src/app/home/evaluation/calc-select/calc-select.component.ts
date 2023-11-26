@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 })
 export class CalcSelectComponent {
   selectedValue: any;
+  disabled: boolean = true;
   constructor(private router: Router,
     private dataService: DataService) {
 
@@ -17,11 +18,17 @@ export class CalcSelectComponent {
     window.history.back();
   }
   next() {
-    this.dataService.setData('agirlik',this.selectedValue)
+    if (!this.selectedValue) {
+      this.disabled = true;
+      return;
+    }
+    this.dataService.setData('agirlik', this.selectedValue);
     this.router.navigate(['/calc']);
 
   }
   selectOption(value: any) {
     this.selectedValue = value;
+    this.disabled = false;
+
   }
 }

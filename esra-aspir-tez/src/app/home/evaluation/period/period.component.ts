@@ -13,6 +13,7 @@ export class PeriodComponent implements OnInit {
   weeks: any = [];
   selectedWeek: any;
   loading = false;
+  disabled:boolean = true;
   constructor(
     private api: HttpService,
     private dataService: DataService,
@@ -30,12 +31,20 @@ export class PeriodComponent implements OnInit {
       console.log(res);
       this.weeks = res;
       this.loading = false;
+    }, err => {
+      this.loading = false;
     });
   }
   selectWeek(option: any) {
     this.selectedWeek = option;
+    this.disabled = false;
+
   }
   next() {
+    if (!this.selectedWeek) {
+      this.disabled = true;
+      return ;
+    }
     this.loading = true;
     this.api.post('performans/updateBakilanCagriTamCcs?haftaId=' + this.selectedWeek.hafta_sira, {}).subscribe(res => {
       console.log(res);
@@ -44,6 +53,8 @@ export class PeriodComponent implements OnInit {
       this.router.navigate(['/ccs']);
       this.loading = false;
 
+    }, err => {
+      this.loading = false;
     });
 
   }

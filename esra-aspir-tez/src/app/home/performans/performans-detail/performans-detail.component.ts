@@ -57,6 +57,8 @@ export class PerformansDetailComponent {
       this.text += " tahmini çözülmesi beklenen çağrı süresi: ";
       this.text += res[1]['Tahmini Çözülen Çağrı Süre'].toFixed(2);
       this.loading = false;
+    },err=>{
+      this.loading = false;
     });
   }
   goBack() {

@@ -42,6 +42,8 @@ export class AnalysisDetailComponent implements OnInit {
       this.detail = res;
       this.loading = false;
       this.createChart();
+    },err=>{
+      this.loading = false;
     });
   }
   createChart() {

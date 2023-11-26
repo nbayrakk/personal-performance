@@ -15,6 +15,7 @@ export class AnalysisSelectComponent implements OnInit {
   weeks: any;
   teams: any;
   loading = false;
+  disabled= true
   constructor(
     private api: HttpService,
     private router: Router,
@@ -44,18 +45,24 @@ export class AnalysisSelectComponent implements OnInit {
   }
   selectTeam(option: any) {
     this.selectedTeam = option;
+    if(this.selectedTeam && this.selectedStartWeek && this.selectedEndWeek){
+      this.disabled = false
+    }
+  }
 
-  }
-  selectOption(option: string) {
-    this.selectedTeam = option;
-  }
   selectOptionStartWeek(option: string) {
     this.selectedStartWeek = option;
+    if(this.selectedTeam && this.selectedStartWeek && this.selectedEndWeek){
+      this.disabled = false
+    }
     this.dataService.setData('selectedStartWeek', this.selectedStartWeek);
 
   }
   selectOptionEndWeek(option: string) {
     this.selectedEndWeek = option;
+    if(this.selectedTeam && this.selectedStartWeek && this.selectedEndWeek){
+      this.disabled = false
+    }
     this.dataService.setData('selectedEndWeek', this.selectedEndWeek);
   }
 
@@ -74,6 +81,8 @@ export class AnalysisSelectComponent implements OnInit {
       });
       this.dataService.setData('performans', performans);
       this.router.navigate(['/analiysis-result']);
+    },err=>{
+      this.loading = false;
     });
 
   }

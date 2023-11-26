@@ -72,7 +72,7 @@
   <button class="btn btn-primary background" style="width: 100px;" (click)="home()">Ana Sayfa</button>
 
 
-  <button type="button" (click)="next()" style="width: 75px;" class="btn btn-primary background">Devam</button>
+  <button type="button" [disabled]="disabled" (click)="next()" style="width: 75px;" class="btn btn-primary background">Devam</button>
 
 
 </div>

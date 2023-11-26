@@ -30,21 +30,20 @@ export class PerformansComponent implements OnInit {
   selectWeek(option: any) {
     this.selectedWeek = option;
     this.dataService.setData('performanceWeek', this.selectedWeek);
-
     this.getPerformans();
   }
   getWeeks() {
     this.loading = true;
     this.api.get('haftalar/allHaftalar').subscribe(res => {
-      console.log(res);
       this.weeks = res;
       this.loading = false;
     });
   }
   chartFilled(label: any, data: any, color: any) {
 
+    const ctx = document.getElementById('MyChart') as HTMLCanvasElement;
 
-    this.chart = new Chart("MyChart", {
+    this.chart = new Chart(ctx, {
       type: 'doughnut',
       data: {
         labels: label,
@@ -62,21 +61,26 @@ export class PerformansComponent implements OnInit {
     this.api.get('performans/allPerformansByHafta?hafta=' + this.selectedWeek.hafta_sira).subscribe(res => {
       this.data = res;
       this.loading = false;
-      console.log(res);
       let label = this.data.map((data: any) => {
         return data.calisan.personelAdi + data.calisan.personelSoyadi;
       });
       let data = this.data.map((data: any) => {
         return data.ccsPuani;
       });
+
       let color: any = [];
       this.data.forEach((el: any) => {
         const randomNum = () => Math.floor(Math.random() * (235 - 52 + 1) + 52);
         const randomRGB = () => `rgb(${randomNum()}, ${randomNum()}, ${randomNum()})`;
         color.push(randomRGB);
       });
+      if(this.chart){
+        this.chart.destroy();
+      }
       this.chartFilled(label, data, color);
 
+    },err=>{
+      this.loading = false;
     });
   }
   detail(id: any) {

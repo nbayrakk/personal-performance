@@ -52,7 +52,9 @@ export class CalcComponent implements OnInit {
       return;
     }
     this.inputValues.forEach(el => {
-      if (!el) this.show = true;
+      if (!el) {
+        this.show = true;
+      }
     });
     if (this.show) return;
 
@@ -70,6 +72,8 @@ export class CalcComponent implements OnInit {
     this.api.post('performans/updateYoneticiPuaniYpd', data).subscribe(res => {
       this.dataService.setData('ypd', res);
       this.router.navigate(['/calc-result']);
+      this.loading = false;
+    }, err => {
       this.loading = false;
     });
   }

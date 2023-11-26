@@ -34,7 +34,7 @@
   <button class="btn btn-primary background" style="width: 75px;" (click)="goBack()">Geri</button>
 
 
-  <button type="button" (click)="next()" style="width: 75px;" class="btn btn-primary background">Devam</button>
+  <button type="button" [disabled]="disabled" (click)="next()" style="width: 75px;" class="btn btn-primary background">Devam</button>
 
 
 </div>
