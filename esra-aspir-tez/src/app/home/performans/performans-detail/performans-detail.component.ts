@@ -35,7 +35,6 @@ export class PerformansDetailComponent {
 
     }
     this.api.get('performans/getPersonalByHaftalar?hafta1=' + week.hafta_sira + '&hafta2=' + 0 + '&personelId=' + this.id).subscribe(res => {
-      console.log(res);
       this.detail = res;
       this.getText();
 
@@ -43,13 +42,11 @@ export class PerformansDetailComponent {
   }
   getText() {
     let week = this.dataService.getData().performanceWeek;
-console.log(week)
-    if (!week) {
+    if (!week.hafta_sira) {
       this.router.navigate(['/performans']);
       return;
 
     }
-      this.detail[0].calisan.personelSoyadi
 
     this.api.get('performans/getPersonalCagriSayiSureTahmin?personelId=' + this.id).subscribe(res => {
       let sName = this.detail[0].calisan.personelSoyadi.trim()
