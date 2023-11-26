@@ -49,7 +49,7 @@ export class PerformansComponent implements OnInit {
       data: {
         labels: label,
         datasets: [{
-          label: '# of Votes',
+          label: 'ÇÇS',
           data: data,
           backgroundColor: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"]
         }]

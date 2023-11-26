@@ -49,7 +49,7 @@ export class CalcResultComponent {
             backgroundColor: 'blue'
           },
           {
-            label: "YPS Puanı",
+            label: "YPD Puanı",
             data: ypd,
             backgroundColor: 'limegreen'
           }

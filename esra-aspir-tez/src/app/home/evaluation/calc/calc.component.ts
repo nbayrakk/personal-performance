@@ -13,6 +13,7 @@ export class CalcComponent implements OnInit {
   ccs: any;
   inputValues: string[] = [];
   loading = false;
+  show = false;
   constructor(private dataService: DataService,
     private api: HttpService,
     private router: Router
@@ -29,11 +30,32 @@ export class CalcComponent implements OnInit {
   change($event: any, i: any) {
     console.log($event, i);
   }
+  check(i: any) {
+    if (parseInt(this.inputValues[i] + "") == 0) {
+      return true;
+    }
+    if (parseInt(this.inputValues[i] + "") < 74) {
+      return true;
+    }
+    if (parseInt(this.inputValues[i] + "") > 101) {
+      return true;
+    }
+    return false;
+  }
   next() {
     this.loading = true;
     this.ccs.forEach((data: any, index: number) => {
       data.yp = this.inputValues[index] ? this.inputValues[index] : null;
     });
+    if (this.inputValues.length != this.ccs.length) {
+      this.show = true;
+      return;
+    }
+    this.inputValues.forEach(el => {
+      if (!el) this.show = true;
+    });
+    if (this.show) return;
+
     let data: any = [];
     let weekId = this.dataService.getData().week;
     let agirlik = this.dataService.getData().agirlik;

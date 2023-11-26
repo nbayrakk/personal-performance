@@ -2,6 +2,11 @@
   <h2 style="text-align: center;" class="pb-5">Yönetici Puanına Göre Değerlendirme</h2>
   <h4 class="pb-5">PERSONEL PUAN GİRİŞİNİ YAPINIZ</h4>
 </div>
+<p>
+  <ngb-alert type="danger"  *ngIf="show">
+    Lütfen tüm değerlerini giriniz
+  </ngb-alert>
+</p>
 <div class="spinner-border loading" *ngIf="loading" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
@@ -19,9 +24,13 @@
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <input [(ngModel)]="inputValues[i]" type="number" class="form-control"
-            placeholder="">
+          <input [(ngModel)]="inputValues[i]" type="number" min="75" max="100" class="form-control" placeholder="">
+          <div [hidden]="!check(i)" style="color:#dc3545;margin-top: .25rem;">
+            Hatalı Değer girdiniz. Değer 75 ile 100 arasında olmalı.
+          </div>
+
         </div>
+
       </div>
     </div>
   </div>

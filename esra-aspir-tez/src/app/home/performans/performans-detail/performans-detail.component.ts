@@ -24,7 +24,6 @@ export class PerformansDetailComponent {
     this.route.params.subscribe(params => {
       this.id = +params['id'];
       this.getDetail();
-      this.getText();
     });
   }
   getDetail() {
@@ -37,23 +36,30 @@ export class PerformansDetailComponent {
     }
     this.api.get('performans/getPersonalByHaftalar?hafta1=' + week.hafta_sira + '&hafta2=' + 0 + '&personelId=' + this.id).subscribe(res => {
       console.log(res);
-      this.loading = false;
       this.detail = res;
+      this.getText();
+
     });
   }
   getText() {
     let week = this.dataService.getData().performanceWeek;
+console.log(week)
     if (!week) {
       this.router.navigate(['/performans']);
       return;
 
     }
+      this.detail[0].calisan.personelSoyadi
+
     this.api.get('performans/getPersonalCagriSayiSureTahmin?personelId=' + this.id).subscribe(res => {
-      this.text += this.detail[0].calisan.personelAdi.charAt(0).toUpperCase() + this.detail[0].calisan.personelAdi.slice(1).toLowerCase() + " " + this.detail[0].calisan.personelSoyadi.charAt(0).toUpperCase() + this.detail[0].calisan.personelSoyadi.slice(1).toLowerCase();
-      this.text += " sonraki haftalarda ki tahmini çözülen çağrı sayısı: ";
+      let sName = this.detail[0].calisan.personelSoyadi.trim()
+      this.text += this.detail[0].calisan.personelAdi.charAt(0).toUpperCase() + this.detail[0].calisan.personelAdi.slice(1).toLowerCase() + " ";
+      this.text += sName.charAt(0).toUpperCase() + sName.slice(1).toLowerCase();
+      this.text += " sonraki haftalarda ki tahmini çözülmesi beklenen çağrı sayısı: ";
       this.text += res[0]['Tahmini Çözülen Çağrı Sayısı'];
-      this.text += " tahmini çözülen çağrı süresi: ";
+      this.text += " tahmini çözülmesi beklenen çağrı süresi: ";
       this.text += res[1]['Tahmini Çözülen Çağrı Süre'];
+      this.loading = false;
     });
   }
   goBack() {

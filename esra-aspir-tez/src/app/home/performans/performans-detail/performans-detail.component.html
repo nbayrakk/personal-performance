@@ -17,7 +17,7 @@
             Kişi Başı Günlük Çözülen Çağrı Sayısı[Çözüm / (Kişi Sayısı*Gün)]
           </th>
           <th>
-            Kişi Başı Günlük Karşılanan Çağrı Sayısı[Çözüm+Eskale / (Kişi Sayısı*Gün)]
+            Bakılan Çağrı Sayısı
           </th>
         </tr>
 
@@ -34,10 +34,10 @@
             {{detail[0].yenidenAcilanCagriPuani}}
           </td>
           <td>
-            ?
+            {{detail[0].bakilanCagri - detail[0].yenidenAcilanCagri }}
           </td>
           <td>
-            ?
+            {{detail[0].kisiCalismaSaati}}
           </td>
         </tr>
       </tbody>

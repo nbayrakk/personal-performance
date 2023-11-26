@@ -29,7 +29,7 @@ export class YcsComponent implements OnInit {
 
   }
   next() {
-    if (this.yac + this.yc + this.yp > 100) {
+    if (this.yac + this.yc + this.yp > 100 || this.yac + this.yc + this.yp < 100) {
       this.show = true;
       return;
     }
