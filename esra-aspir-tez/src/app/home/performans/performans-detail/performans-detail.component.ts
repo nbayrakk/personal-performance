@@ -53,9 +53,9 @@ export class PerformansDetailComponent {
       this.text += this.detail[0].calisan.personelAdi.charAt(0).toUpperCase() + this.detail[0].calisan.personelAdi.slice(1).toLowerCase() + " ";
       this.text += sName.charAt(0).toUpperCase() + sName.slice(1).toLowerCase();
       this.text += " sonraki haftalarda ki tahmini çözülmesi beklenen çağrı sayısı: ";
-      this.text += res[0]['Tahmini Çözülen Çağrı Sayısı'];
+      this.text += res[0]['Tahmini Çözülen Çağrı Sayısı'].toFixed(2);
       this.text += " tahmini çözülmesi beklenen çağrı süresi: ";
-      this.text += res[1]['Tahmini Çözülen Çağrı Süre'];
+      this.text += res[1]['Tahmini Çözülen Çağrı Süre'].toFixed(2);
       this.loading = false;
     });
   }
