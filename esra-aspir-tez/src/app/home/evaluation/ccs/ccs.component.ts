@@ -24,6 +24,9 @@ export class CcsComponent implements OnInit {
       this.router.navigate(['/period']);
       return;
     }
+    this.ccs.sort((a:any, b:any) => {
+      return a.ccsPuani - b.ccsPuani
+    });
     let label = this.ccs.map((data: any) => {
       return data.calisan.personelAdi + data.calisan.personelSoyadi;
     });

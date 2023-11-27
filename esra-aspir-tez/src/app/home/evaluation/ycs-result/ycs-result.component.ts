@@ -24,6 +24,9 @@ export class YcsResultComponent implements OnInit{
     this.ccs = this.dataService.getData().ccs;
     this.ypd = this.dataService.getData().ypd;
     this.ycs = this.dataService.getData().ycs;
+    this.ycs.sort((a:any, b:any) => {
+      return a.ycsPuani - b.ycsPuani
+    });
     let label = this.ccs.map((data: any) => {
       return data.calisan.personelAdi + data.calisan.personelSoyadi;
     });

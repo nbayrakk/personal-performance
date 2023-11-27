@@ -21,7 +21,7 @@
 
 
 <div class="col-md-12 row" style="margin-top: 50px;" >
-  <div class="col-md-9">
+  <div class="col-md-8">
     <div class="chart-custom">
       <div class="chart-container" style="width: 600px;height: 600px;">
         <canvas width="600" id="MyChart">{{ chart }}</canvas>
@@ -29,13 +29,15 @@
     </div>
 
   </div>
-  <div class="col-md-3">
+  <div class="col-md-4">
     <table class="table" *ngIf="data.length">
       <thead>
         <tr>
           <th scope="col">#</th>
           <th scope="col">Ad Soyad</th>
           <th scope="col">ÇÇS</th>
+          <th scope="col">YPD</th>
+          <th scope="col">YÇS</th>
         </tr>
       </thead>
       <tbody>
@@ -46,6 +48,8 @@
 
           </td>
           <td> {{personal.ccsPuani}} </td>
+          <td> {{personal.ypdPuani}} </td>
+          <td> {{personal.ycsPuani}} </td>
         </tr>
       </tbody>
     </table>

@@ -26,6 +26,9 @@ export class CalcResultComponent {
       this.router.navigate(['/period']);
       return;
     }
+    this.ypd.sort((a:any, b:any) => {
+      return a.ypdPuani - b.ypdPuani
+    });
     let label = this.ccs.map((data: any) => {
       return data.calisan.personelAdi + data.calisan.personelSoyadi;
     });
@@ -37,6 +40,7 @@ export class CalcResultComponent {
       return data.ypdPuani;
     });
 
+    console.log(ypd)
     this.chart = new Chart("MyChart", {
       type: 'bar', //this denotes tha type of chart
 

@@ -25,6 +25,11 @@ export class PerformansComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    let pWeek = this.dataService.getData().performanceWeek;
+    if (pWeek) {
+      this.selectedWeek = pWeek;
+      this.getPerformans();
+    }
     this.getWeeks();
   }
   selectWeek(option: any) {
@@ -60,6 +65,9 @@ export class PerformansComponent implements OnInit {
     this.loading = true;
     this.api.get('performans/allPerformansByHafta?hafta=' + this.selectedWeek.hafta_sira).subscribe(res => {
       this.data = res;
+      this.data.sort((a: any, b: any) => {
+        return a.ccsPuani - b.ccsPuani;
+      });
       this.loading = false;
       let label = this.data.map((data: any) => {
         return data.calisan.personelAdi + data.calisan.personelSoyadi;
@@ -74,12 +82,12 @@ export class PerformansComponent implements OnInit {
         const randomRGB = () => `rgb(${randomNum()}, ${randomNum()}, ${randomNum()})`;
         color.push(randomRGB);
       });
-      if(this.chart){
+      if (this.chart) {
         this.chart.destroy();
       }
       this.chartFilled(label, data, color);
 
-    },err=>{
+    }, err => {
       this.loading = false;
     });
   }
@@ -89,7 +97,7 @@ export class PerformansComponent implements OnInit {
   goBack() {
     window.history.back();
   }
-  home(){
+  home() {
     this.router.navigate(['/home']);
 
   }
