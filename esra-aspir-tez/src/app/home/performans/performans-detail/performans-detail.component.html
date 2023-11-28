@@ -11,13 +11,19 @@
             Toplam Karşılanan Çağrı Adedi
           </th>
           <th>
-            Yeniden Açılan Çağrı Sayısı
+            Yeniden Açılan Çağrı
           </th>
           <th>
-            Kişi Başı Günlük Çözülen Çağrı Sayısı[Çözüm / (Kişi Sayısı*Gün)]
+            Verimli Çözülen Çağrı
           </th>
           <th>
-            Bakılan Çağrı Sayısı
+            ÇÇS
+          </th>
+          <th>
+            YPD
+          </th>
+          <th>
+            YÇS
           </th>
         </tr>
 
@@ -31,13 +37,16 @@
             {{detail[0].bakilanCagri}}
           </td>
           <td>
-            {{detail[0].yenidenAcilanCagriPuani}}
+            {{detail[0].yenidenAcilanCagri}}
           </td>
           <td>
-            {{detail[0].bakilanCagri - detail[0].yenidenAcilanCagri }}
+            {{detail[0].ycsPuani}}
           </td>
           <td>
-            {{detail[0].kisiCalismaSaati}}
+            {{detail[0].ypdPuani}}
+          </td>
+          <td>
+            {{detail[0].ycsPuani}}
           </td>
         </tr>
       </tbody>
@@ -53,4 +62,3 @@
 
 
 </div>
-

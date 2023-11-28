@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Chart } from 'chart.js/auto';
 import { DataService } from './../../../service/data.service';
 import { Component, OnInit } from '@angular/core';
+import { Ticks } from 'chart.js';
 
 @Component({
   selector: 'app-ycs-result',
@@ -64,7 +65,8 @@ export class YcsResultComponent implements OnInit{
         ]
       },
       options: {
-        aspectRatio: 2.5
+        aspectRatio: 2.5,
+
       }
 
     });

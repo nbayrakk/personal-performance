@@ -43,13 +43,15 @@ export class CalcComponent implements OnInit {
     return false;
   }
   next() {
-    this.loading = true;
     this.ccs.forEach((data: any, index: number) => {
       data.yp = this.inputValues[index] ? this.inputValues[index] : null;
     });
     if (this.inputValues.length != this.ccs.length) {
       this.show = true;
       return;
+    }else {
+      this.show = false;
+
     }
     this.inputValues.forEach(el => {
       if (!el) {
@@ -57,6 +59,7 @@ export class CalcComponent implements OnInit {
       }
     });
     if (this.show) return;
+    this.loading = true;
 
     let data: any = [];
     let weekId = this.dataService.getData().week;

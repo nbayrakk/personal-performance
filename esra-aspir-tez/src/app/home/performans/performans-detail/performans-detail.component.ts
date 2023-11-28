@@ -54,8 +54,8 @@ export class PerformansDetailComponent {
       this.text += sName.charAt(0).toUpperCase() + sName.slice(1).toLowerCase();
       this.text += " sonraki haftalarda ki tahmini çözülmesi beklenen çağrı sayısı: ";
       this.text += res[0]['Tahmini Çözülen Çağrı Sayısı'].toFixed(2);
-      this.text += " tahmini çözülmesi beklenen çağrı süresi: ";
-      this.text += res[1]['Tahmini Çözülen Çağrı Süre'].toFixed(2);
+      this.text += ", yeniden açılması beklenen çağrı adedi: ";
+      this.text += res[1]['Tahmini Açılması Beklenen Çağrı Adedi'].toFixed(2);
       this.loading = false;
     },err=>{
       this.loading = false;

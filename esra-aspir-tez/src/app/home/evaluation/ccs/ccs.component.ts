@@ -43,12 +43,12 @@ export class CcsComponent implements OnInit {
           {
             label: "ÇÇS Paunı",
             data: data,
-            backgroundColor: 'blue'
+            backgroundColor: 'blue',
           }
         ]
       },
       options: {
-        aspectRatio: 2.5
+        aspectRatio: 2.5,
       }
 
     });
