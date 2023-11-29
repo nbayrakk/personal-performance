@@ -22,6 +22,9 @@ export class CalcComponent implements OnInit {
   }
   ngOnInit(): void {
     this.ccs = this.dataService.getData().ccs;
+    this.ccs.sort((a:any, b:any) => {
+      return a.calisan.personelId - b.calisan.personelId
+    });
     if (!this.ccs) {
       this.router.navigate(['/period']);
       return;
@@ -51,7 +54,6 @@ export class CalcComponent implements OnInit {
       return;
     }else {
       this.show = false;
-
     }
     this.inputValues.forEach(el => {
       if (!el) {
