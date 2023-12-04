@@ -32,7 +32,7 @@ export class CalcResultComponent {
     let label = this.ypd.map((data: any) => {
       return data.calisan.personelAdi + data.calisan.personelSoyadi;
     });
-    let data = this.ccs.map((data: any) => {
+    let data = this.ypd.map((data: any) => {
       return data.ccsPuani;
     });
 

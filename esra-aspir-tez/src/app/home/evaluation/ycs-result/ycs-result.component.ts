@@ -31,11 +31,11 @@ export class YcsResultComponent implements OnInit{
     let label = this.ycs.map((data: any) => {
       return data.calisan.personelAdi + data.calisan.personelSoyadi;
     });
-    let data = this.ccs.map((data: any) => {
+    let data = this.ycs.map((data: any) => {
       return data.ccsPuani;
     });
 
-    let ypd  = this.ypd.map((data: any) => {
+    let ypd  = this.ycs.map((data: any) => {
       return data.ypdPuani;
     });
     let ycs =  this.ycs.map((data: any) => {
