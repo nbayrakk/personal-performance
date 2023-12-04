@@ -72,7 +72,7 @@ export class AnalysisDetailComponent implements OnInit {
             backgroundColor: 'blue'
           },
           {
-            label: "YPS Puanı",
+            label: "YPD Puanı",
             data: ypd,
             backgroundColor: 'limegreen'
           },

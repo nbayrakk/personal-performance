@@ -68,7 +68,7 @@ export class AnalysisResultComponent implements OnInit {
             backgroundColor: 'blue'
           },
           {
-            label: "YPS Puanı",
+            label: "YPD Puanı",
             data: ypd,
             backgroundColor: 'limegreen'
           },
@@ -111,7 +111,7 @@ export class AnalysisResultComponent implements OnInit {
             backgroundColor: 'blue'
           },
           {
-            label: "YPS Puanı",
+            label: "YPD Puanı",
             data: ypd,
             backgroundColor: 'limegreen'
           },
