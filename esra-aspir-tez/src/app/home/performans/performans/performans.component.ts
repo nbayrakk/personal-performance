@@ -55,7 +55,7 @@ export class PerformansComponent implements OnInit {
         datasets: [{
           label: 'ÇÇS',
           data: data,
-          backgroundColor: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"]
+          backgroundColor: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange",""]
         }]
       },
     });

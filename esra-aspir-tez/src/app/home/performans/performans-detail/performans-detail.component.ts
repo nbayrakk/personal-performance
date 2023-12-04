@@ -34,7 +34,8 @@ export class PerformansDetailComponent {
       return;
 
     }
-    this.api.get('performans/getPersonalByHaftalar?hafta1=' + week.hafta_sira + '&hafta2=' + 0 + '&personelId=' + this.id).subscribe(res => {
+    this.api.get('performans/getPersonalByHaftalar?hafta1=' + week.hafta_sira + '&hafta2=' + 0 + '&personelId=' + this.id)
+    .subscribe(res => {
       this.detail = res;
       this.getText();
 

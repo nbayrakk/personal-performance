@@ -29,7 +29,7 @@ export class CalcResultComponent {
     this.ypd.sort((a:any, b:any) => {
       return a.ypdPuani - b.ypdPuani
     });
-    let label = this.ccs.map((data: any) => {
+    let label = this.ypd.map((data: any) => {
       return data.calisan.personelAdi + data.calisan.personelSoyadi;
     });
     let data = this.ccs.map((data: any) => {

@@ -28,7 +28,7 @@ export class YcsResultComponent implements OnInit{
     this.ycs.sort((a:any, b:any) => {
       return a.ycsPuani - b.ycsPuani
     });
-    let label = this.ccs.map((data: any) => {
+    let label = this.ycs.map((data: any) => {
       return data.calisan.personelAdi + data.calisan.personelSoyadi;
     });
     let data = this.ccs.map((data: any) => {
@@ -53,7 +53,7 @@ export class YcsResultComponent implements OnInit{
             backgroundColor: 'blue'
           },
           {
-            label: "YPS Puanı",
+            label: "YPD Puanı",
             data: ypd,
             backgroundColor: 'limegreen'
           },

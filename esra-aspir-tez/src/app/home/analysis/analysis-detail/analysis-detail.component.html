@@ -1,8 +1,7 @@
-
 <div class="spinner-border loading" *ngIf="loading" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
-<div class="col-md-12 row" >
+<div class="col-md-12 row">
   <div class="col-md-12" style="display: flex;justify-content: center;margin-bottom: 20px;">
     <div class="chart-container" style="width: 600px;">
       <canvas width="600" id="MyChart">{{ chart }}</canvas>
@@ -26,12 +25,13 @@
               <label for="" *ngIf="i == 0">
                 ÇÇS
               </label>
-              <label for="" *ngIf="i == 1">
-                YÇC
-              </label>
               <label for="" *ngIf="i == 2">
                 YPD
               </label>
+              <label for="" *ngIf="i == 1">
+                YÇS
+              </label>
+
               <!-- ççs -->
             </td>
             <td *ngFor="let data of detail;let j = index">
@@ -41,17 +41,17 @@
               <label for="" *ngIf=" i == 0 &&j=== 1">
                 {{data.ccsPuani}}
               </label>
-              <label for="" *ngIf=" i == 1 &&j=== 0">
-                {{data.ycsPuani}}
-              </label>
-              <label for="" *ngIf="i == 1 && j=== 1">
-                {{data.ycsPuani}}
-              </label>
               <label for="" *ngIf="i == 2 && j=== 0">
                 {{data.ypdPuani}}
               </label>
               <label for="" *ngIf="i == 2  &&j=== 1">
                 {{data.ypdPuani}}
+              </label>
+              <label for="" *ngIf=" i == 1 &&j=== 0">
+                {{data.ycsPuani}}
+              </label>
+              <label for="" *ngIf="i == 1 && j=== 1">
+                {{data.ycsPuani}}
               </label>
             </td>
           </tr>

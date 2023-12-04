@@ -13,7 +13,9 @@ export class PeriodComponent implements OnInit {
   weeks: any = [];
   selectedWeek: any;
   loading = false;
-  disabled:boolean = true;
+  disabled: boolean = true;
+
+
   constructor(
     private api: HttpService,
     private dataService: DataService,
@@ -34,6 +36,7 @@ export class PeriodComponent implements OnInit {
     }, err => {
       this.loading = false;
     });
+
   }
   selectWeek(option: any) {
     this.selectedWeek = option;
@@ -43,7 +46,7 @@ export class PeriodComponent implements OnInit {
   next() {
     if (!this.selectedWeek) {
       this.disabled = true;
-      return ;
+      return;
     }
     this.loading = true;
     this.api.post('performans/updateBakilanCagriTamCcs?haftaId=' + this.selectedWeek.hafta_sira, {}).subscribe(res => {

@@ -36,9 +36,9 @@ export class AnalysisDetailComponent implements OnInit {
     }
     this.loading = true;
 
-    this.api.get('performans/getPersonalByHaftalar?hafta1=' + startWeek.hafta_sira + '&hafta2=' + endWeek.hafta_sira + '&personelId=' + this.id).subscribe(res => {
+    this.api.get('performans/getPersonalByHaftalar?hafta1=' + startWeek.hafta_sira + '&hafta2=' + endWeek.hafta_sira + '&personelId=' + this.id)
+    .subscribe(res => {
       console.log(res);
-      this.loading = true;
       this.detail = res;
       this.loading = false;
       this.createChart();
