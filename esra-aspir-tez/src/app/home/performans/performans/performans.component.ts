@@ -55,7 +55,7 @@ export class PerformansComponent implements OnInit {
         datasets: [{
           label: 'ÇÇS',
           data: data,
-          backgroundColor: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange",""]
+          backgroundColor:color
         }]
       },
     });
@@ -79,7 +79,7 @@ export class PerformansComponent implements OnInit {
       let color: any = [];
       this.data.forEach((el: any) => {
         const randomNum = () => Math.floor(Math.random() * (235 - 52 + 1) + 52);
-        const randomRGB = () => `rgb(${randomNum()}, ${randomNum()}, ${randomNum()})`;
+        const randomRGB = `rgb(${Math.floor(Math.random() * (235 - 52 + 1) + 52)}, ${Math.floor(Math.random() * (235 - 52 + 1) + 52)}, ${Math.floor(Math.random() * (235 - 52 + 1) + 52)})`;
         color.push(randomRGB);
       });
       if (this.chart) {
