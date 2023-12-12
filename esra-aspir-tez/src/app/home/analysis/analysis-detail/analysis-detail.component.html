@@ -2,65 +2,22 @@
   <span class="visually-hidden">Loading...</span>
 </div>
 <div class="col-md-12 row">
-  <div class="col-md-12" style="display: flex;justify-content: center;margin-bottom: 20px;">
-    <div class="chart-container" style="width: 600px;">
-      <canvas width="600" id="MyChart">{{ chart }}</canvas>
+  <div class="col-md-12"
+    style="display: flex;justify-content: center;margin-bottom: 20px;">
+    <div class="chart-container" style="width: 600px;border:none">
+      <canvas id="MyChart1" width="700" height="250"></canvas>
+
+    </div>
+    <div class="chart-container" style="width: 600px;border:none">
+      <canvas id="MyChart2" width="700" height="250"></canvas>
+
     </div>
   </div>
-  <div class="col-md-12" *ngIf="!loading" style="display: flex;justify-content: center;">
-    <div class="col-md-6">
-      <table class="table" *ngIf="detail.length">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col" *ngFor="let data of detail;let i = index">
-              {{data.haftalar.tarih}}
-            </th>
-          </tr>
-
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of [].constructor(3);let i = index">
-            <td scope="col">
-              <label for="" *ngIf="i == 0">
-                ÇÇS
-              </label>
-              <label for="" *ngIf="i == 1">
-                YPD
-              </label>
-              <label for="" *ngIf="i == 2">
-                YÇS
-              </label>
-
-              <!-- ççs -->
-            </td>
-            <td *ngFor="let data of detail;let j = index">
-              <label for="" *ngIf="i == 0 && j=== 0">
-                {{data.ccsPuani}}
-              </label>
-              <label for="" *ngIf=" i == 0 &&j=== 1">
-                {{data.ccsPuani}}
-              </label>
-              <label for="" *ngIf="i == 1 && j=== 0">
-                {{data.ypdPuani}}
-              </label>
-              <label for="" *ngIf="i == 1  &&j=== 1">
-                {{data.ypdPuani}}
-              </label>
-              <label for="" *ngIf=" i == 2 &&j=== 0">
-                {{data.ycsPuani}}
-              </label>
-              <label for="" *ngIf="i == 2 && j=== 1">
-                {{data.ycsPuani}}
-              </label>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-
-  </div>
+<div>
+  <label for="">
+    {{text}}
+  </label>
+</div>
 </div>
 <div *ngIf="!loading" class="row" style="display: flex;justify-content: space-between;margin-top: 40px;">
 

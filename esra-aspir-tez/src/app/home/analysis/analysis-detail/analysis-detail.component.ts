@@ -14,6 +14,14 @@ export class AnalysisDetailComponent implements OnInit {
   loading = false;
   chart: any;
   detail: any;
+  public lineChartData: Array<any> = [];
+  public lineChartLabels: Array<any> = [];
+  public lineChartOptions: any = {
+    responsive: true
+  };
+  text: string = "";
+  public lineChartLegend = true;
+  public lineChartType = 'line';
   constructor(private route: ActivatedRoute,
     private api: HttpService,
     private dataService: DataService,
@@ -24,6 +32,22 @@ export class AnalysisDetailComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = +params['id'];
       this.getDetail();
+
+    });
+  }
+  gettext() {
+    this.loading = true
+    this.api.get('performans/getPersonalCagriSayiSureTahmin?personelId=' + this.id).subscribe(res => {
+      let sName = this.detail[0].calisan.personelSoyadi.trim();
+      this.text += this.detail[0].calisan.personelAdi.charAt(0).toUpperCase() + this.detail[0].calisan.personelAdi.slice(1).toLowerCase() + " ";
+      this.text += sName.charAt(0).toUpperCase() + sName.slice(1).toLowerCase();
+      this.text += " sonraki haftalarda ki tahmini çözülmesi beklenen çağrı sayısı: ";
+      this.text += res[0]['Tahmini Çözülen Çağrı Sayısı'].toFixed(2);
+      this.text += ", yeniden açılması beklenen çağrı adedi: ";
+      this.text += res[1]['Tahmini Açılması Beklenen Çağrı Adedi'].toFixed(2);
+      this.loading = false;
+    }, err => {
+      this.loading = false;
     });
   }
   getDetail() {
@@ -36,59 +60,91 @@ export class AnalysisDetailComponent implements OnInit {
     }
     this.loading = true;
 
-    this.api.get('performans/getPersonalByHaftalar?hafta1=' + startWeek.hafta_sira + '&hafta2=' + endWeek.hafta_sira + '&personelId=' + this.id)
-    .subscribe(res => {
-      console.log(res);
-      this.detail = res;
-      this.loading = false;
-      this.createChart();
-    },err=>{
-      this.loading = false;
-    });
+    this.api.get('performans/getPersonalByHaftalarBtwHafta?hafta1=' + startWeek.hafta_sira + '&hafta2=' + endWeek.hafta_sira + '&personelId=' + this.id)
+      .subscribe(res => {
+        console.log(res);
+        this.detail = res;
+        this.loading = false;
+        this.gettext();
+        setTimeout(() => {
+          this.createChart();
+          this.createChart2();
+        }, 100);
+
+      }, err => {
+        this.loading = false;
+      });
   }
   createChart() {
-    let label = this.detail.map((data: any) => {
-      return data.haftalar.tarih;
-    });
-    let data = this.detail.map((data: any) => {
-      return data.ccsPuani;
-    });
+    let xlabel = [];
+    for (let i = 0; i < this.detail.length; i++) {
 
-    let ypd = this.detail.map((data: any) => {
-      return data.ypdPuani;
-    });
-    let ycs = this.detail.map((data: any) => {
-      return data.ycsPuani;
-    });
-    this.chart = new Chart("MyChart", {
-      type: 'bar', //this denotes tha type of chart
+      xlabel.push(this.detail[i].haftalar.tarih);
+    }
+    let data = this.detail.map((d: any) => d.bakilanCagriTam);
+    let ctx = document.getElementById(`MyChart1`) as HTMLCanvasElement;
+    for (let index = 0; index < this.detail.length; index++) {
 
-      data: {// values on X-Axis
-        labels: label,
+
+    }
+    let myChart = new Chart(ctx, {
+      type: 'line',
+
+      data: {
+        xLabels: xlabel,
         datasets: [
           {
-            label: "ÇÇS Puanı",
-            data: data,
-            backgroundColor: 'blue'
-          },
-          {
-            label: "YPD Puanı",
-            data: ypd,
-            backgroundColor: 'limegreen'
-          },
-          {
-            label: "YCS Puanı",
-            data: ycs,
-            backgroundColor: 'red'
+            label: 'Bakılan Çağrı',
+            backgroundColor: "blue",
+            borderColor: "blue",
+            data: data
           }
-        ]
+        ],
+
       },
       options: {
-        aspectRatio: 2.5
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
       }
-
     });
+  }
+  createChart2() {
+    let xlabel = [];
+    for (let i = 0; i < this.detail.length; i++) {
 
+      xlabel.push(this.detail[i].haftalar.tarih);
+    }
+    let data1 = this.detail.map((d: any) => d.yenidenAcilanCagriTam);
+    let ctx = document.getElementById(`MyChart2`) as HTMLCanvasElement;
+
+    let myChart = new Chart(ctx, {
+      type: 'line',
+
+      data: {
+        xLabels: xlabel,
+        datasets: [
+          {
+            label: 'Yeniden Açılan Çağrı',
+            backgroundColor: "red",
+            borderColor: "red",
+            data: data1
+          },
+        ],
+
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
   }
   goBack() {
     window.history.back();

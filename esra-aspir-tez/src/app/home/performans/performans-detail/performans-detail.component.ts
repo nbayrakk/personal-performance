@@ -49,18 +49,7 @@ export class PerformansDetailComponent {
 
     }
 
-    this.api.get('performans/getPersonalCagriSayiSureTahmin?personelId=' + this.id).subscribe(res => {
-      let sName = this.detail[0].calisan.personelSoyadi.trim()
-      this.text += this.detail[0].calisan.personelAdi.charAt(0).toUpperCase() + this.detail[0].calisan.personelAdi.slice(1).toLowerCase() + " ";
-      this.text += sName.charAt(0).toUpperCase() + sName.slice(1).toLowerCase();
-      this.text += " sonraki haftalarda ki tahmini çözülmesi beklenen çağrı sayısı: ";
-      this.text += res[0]['Tahmini Çözülen Çağrı Sayısı'].toFixed(2);
-      this.text += ", yeniden açılması beklenen çağrı adedi: ";
-      this.text += res[1]['Tahmini Açılması Beklenen Çağrı Adedi'].toFixed(2);
-      this.loading = false;
-    },err=>{
-      this.loading = false;
-    });
+
   }
   goBack() {
     window.history.back();

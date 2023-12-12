@@ -1,5 +1,12 @@
-.loading{
-  position:absolute;
-  top: 55%;
-  left: 50%;
+.chart-container {
+  position: relative;
+  width: 300px; /* Grafiğin genişliği */
+  height: 200px; /* Grafiğin yüksekliği */
+  border: 1px solid #ccc;
+}
+
+.line {
+  fill: none;
+  stroke: blue; /* Çizgi rengi */
+  stroke-width: 2; /* Çizgi kalınlığı */
 }
