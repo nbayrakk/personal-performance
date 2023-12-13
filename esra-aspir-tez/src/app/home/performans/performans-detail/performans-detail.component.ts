@@ -38,7 +38,7 @@ export class PerformansDetailComponent {
     .subscribe(res => {
       this.detail = res;
       this.getText();
-
+      this.loading = false
     });
   }
   getText() {
