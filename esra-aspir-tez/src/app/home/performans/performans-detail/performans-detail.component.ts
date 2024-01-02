@@ -26,6 +26,7 @@ export class PerformansDetailComponent {
       this.getDetail();
     });
   }
+
   getDetail() {
     this.loading = true;
     let week = this.dataService.getData().performanceWeek;

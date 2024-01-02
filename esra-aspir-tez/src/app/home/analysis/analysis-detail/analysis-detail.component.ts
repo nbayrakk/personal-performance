@@ -22,6 +22,7 @@ export class AnalysisDetailComponent implements OnInit {
   text: string = "";
   public lineChartLegend = true;
   public lineChartType = 'line';
+  possible = []
   constructor(private route: ActivatedRoute,
     private api: HttpService,
     private dataService: DataService,
@@ -32,11 +33,22 @@ export class AnalysisDetailComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = +params['id'];
       this.getDetail();
-
     });
   }
+  getPosible() {
+    this.api.get('performans/allPersonelData?personelId=' + this.id)
+      .subscribe(res => {
+        console.log(res);
+        this.possible = res;
+        this.loading = false;
+        setTimeout(() => {
+          this.createChart();
+          this.createChart2();
+        }, 100);
+      });
+  }
   gettext() {
-    this.loading = true
+    this.loading = true;
     this.api.get('performans/getPersonalCagriSayiSureTahmin?personelId=' + this.id).subscribe(res => {
       let sName = this.detail[0].calisan.personelSoyadi.trim();
       this.text += this.detail[0].calisan.personelAdi.charAt(0).toUpperCase() + this.detail[0].calisan.personelAdi.slice(1).toLowerCase() + " ";
@@ -66,10 +78,8 @@ export class AnalysisDetailComponent implements OnInit {
         this.detail = res;
         this.loading = false;
         this.gettext();
-        setTimeout(() => {
-          this.createChart();
-          this.createChart2();
-        }, 100);
+        this.getPosible();
+
 
       }, err => {
         this.loading = false;
@@ -82,6 +92,7 @@ export class AnalysisDetailComponent implements OnInit {
       xlabel.push(this.detail[i].haftalar.tarih);
     }
     let data = this.detail.map((d: any) => d.bakilanCagriTam);
+    let data2 = this.possible.map((d:any)=>d.tahminCozulmeCagri)
     let ctx = document.getElementById(`MyChart1`) as HTMLCanvasElement;
     for (let index = 0; index < this.detail.length; index++) {
 
@@ -98,6 +109,12 @@ export class AnalysisDetailComponent implements OnInit {
             backgroundColor: "blue",
             borderColor: "blue",
             data: data
+          },
+          {
+            label: 'Tahmini Bakılan Çağrı',
+            backgroundColor: "gray",
+            borderColor: "gray",
+            data: data2
           }
         ],
 
@@ -119,6 +136,8 @@ export class AnalysisDetailComponent implements OnInit {
       xlabel.push(this.detail[i].haftalar.tarih);
     }
     let data1 = this.detail.map((d: any) => d.yenidenAcilanCagriTam);
+    let data2 = this.possible.map((d:any)=>d.tahminYenidenAcilmaCagri)
+
     let ctx = document.getElementById(`MyChart2`) as HTMLCanvasElement;
 
     let myChart = new Chart(ctx, {
@@ -132,6 +151,12 @@ export class AnalysisDetailComponent implements OnInit {
             backgroundColor: "red",
             borderColor: "red",
             data: data1
+          },
+          {
+            label: 'Tahmini Yeniden Açılan Çağrı',
+            backgroundColor: "gray",
+            borderColor: "gray",
+            data: data2
           },
         ],
 
